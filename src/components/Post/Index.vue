@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" v-model="title">
@@ -10,18 +10,17 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-8">
                 <h4>Posts List</h4>
                 <div class="card mb-3" style=""
                     v-for="(post, index) in posts" :key="index"
-                    @click="setActivePost(post, index)"
                 >
                     <div class="card-body">
                         <h5 class="card-title">{{ post.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ post.publised ? 'Publish' : 'Unpublish' }}</h6>
                         <p class="card-text">{{ post.description }}</p>
                         <a :href="'/posts/' + post.id" class="card-link">Edit</a>
-                        <a href="#" class="card-link">Remove</a>
                     </div>
                 </div>
 
@@ -53,12 +52,6 @@ export default {
             }).catch((err) => {
                 console.log(err)
             });
-        },
-
-        refreshList() {
-            this.retrievePosts();
-            this.currentPost = null;
-            this.currentIndex = -1;
         },
 
         removeAllPosts() {
