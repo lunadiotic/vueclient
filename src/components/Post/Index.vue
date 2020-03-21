@@ -58,7 +58,7 @@ export default {
             PostService.deleteAll()
             .then((result) => {
                 console.log(result.data);
-                this.refreshList();
+                this.retrievePosts();
             }).catch((err) => {
                 console.log(err);
             });

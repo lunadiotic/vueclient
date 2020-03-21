@@ -1,22 +1,16 @@
 <template>
     <div>
-        <div v-if="!submitted">
-            <form action="#" @submit.prevent>
-                <div class="form-group">     
-                    <label for="">Title</label>
-                    <input type="text" id="title" class="form-control" v-model="post.title">
-                </div>
-                <div class="form-group">
-                    <label for="">Description</label>
-                    <textarea id="description" cols="10" rows="4" class="form-control" v-model="post.description"></textarea>
-                </div>
-                <button @click="postSubmit" class="btn btn-success">Submit</button>
-            </form>
-        </div>
-        <div v-else>
-            <h4>You submitted successfully!</h4>
-            <button class="btn btn-primary" @click="postNew">Add</button>
-        </div>
+        <form action="#" @submit.prevent>
+            <div class="form-group">     
+                <label for="">Title</label>
+                <input type="text" id="title" class="form-control" v-model="post.title">
+            </div>
+            <div class="form-group">
+                <label for="">Description</label>
+                <textarea id="description" cols="10" rows="4" class="form-control" v-model="post.description"></textarea>
+            </div>
+            <button @click="postSubmit" class="btn btn-success">Submit</button>
+        </form>
     </div>
 </template>
 
@@ -32,8 +26,7 @@ export default {
                 title: "",
                 description: "",
                 published: false
-            },
-            submitted: false
+            }
         }
     },
 
@@ -52,7 +45,7 @@ export default {
                     console.log(err);
                 });
 
-            this.submitted = true;
+            this.$router.push({ name: "posts" });
         },
 
         postNew() {
